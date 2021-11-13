@@ -1,7 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
+import GithubContext from "../../context/github/GithubContext";
 
-export default function Repos({ repos }) {
+export default function Repos() {
+	const { repos } = useContext(GithubContext);
+
 	return (
 		<div className="Repos">
 			{repos.map((r) => (
@@ -12,7 +14,3 @@ export default function Repos({ repos }) {
 		</div>
 	);
 }
-
-Repos.propTypes = {
-	repos: PropTypes.array.isRequired,
-};

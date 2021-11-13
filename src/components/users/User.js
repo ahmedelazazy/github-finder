@@ -1,15 +1,18 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import Repos from "./Repos";
+import GithubContext from "../../context/github/GithubContext";
 
-export default function User({ onGetUser, match, user, repos }) {
+export default function User({ match }) {
+	const githubContext = useContext(GithubContext);
+	const { getUser, user, getRepos } = githubContext;
+
 	const { name, avatar_url, company, login, location, bio, blog, html_url, followers, following, public_repos, public_gists } = user || {};
 
-	console.log(user);
-
 	useEffect(() => {
-		onGetUser(match.params.username);
+		getUser(match.params.username);
+		getRepos(match.params.username);
+		// eslint-disable-next-line
 	}, []);
 
 	return (
@@ -57,13 +60,7 @@ export default function User({ onGetUser, match, user, repos }) {
 				<div className="badge dark">Gists: {public_gists}</div>
 			</section>
 
-			<Repos repos={repos} />
+			<Repos />
 		</div>
 	);
 }
-
-User.propTypes = {
-	onGetUser: PropTypes.func.isRequired,
-	user: PropTypes.object.isRequired,
-	repos: PropTypes.array.isRequired,
-};

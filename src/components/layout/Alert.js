@@ -1,17 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Fragment } from "react";
+import AlertContext from "../../context/alert/AlertContext";
 
-export default function Alert({ alertMessage }) {
-	const [showAlert, setShowAlert] = useState(alertMessage !== null);
+export default function Alert() {
+	const { alert } = useContext(AlertContext);
 
-	useEffect(() => {
-		if (alertMessage) {
-			setShowAlert(true);
-			setTimeout(() => {
-				setShowAlert(false);
-			}, 3000);
-		}
-	}, [alertMessage]);
-
-	return <Fragment>{showAlert && <div className={`Alert ${alertMessage.type}`}>{alertMessage.message}</div>}</Fragment>;
+	return <Fragment>{alert && <div className={`Alert ${alert.type}`}>{alert.message}</div>}</Fragment>;
 }
