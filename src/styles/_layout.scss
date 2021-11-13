@@ -1,0 +1,46 @@
+.container {
+	max-width: 1300px;
+	margin: auto;
+	padding: 0 15px;
+}
+
+.Navbar {
+	background: $primary-color;
+	color: $light-color;
+	font-size: 20px;
+	padding: 20px 0;
+	margin-bottom: 30px;
+
+	.container {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	h3 {
+		margin: 0;
+	}
+
+	ul {
+		list-style: none;
+		margin: 0;
+		display: flex;
+
+		* + * {
+			margin-left: 30px;
+		}
+	}
+}
+
+.Alert {
+	background: $neutral-color;
+	padding: 15px;
+	font-size: 16px;
+	color: $light-color;
+
+	&.danger {
+		border: 1px solid $danger-color;
+		background: $danger-color;
+	}
+}
